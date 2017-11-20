@@ -1,4 +1,5 @@
 # color_classifier 
+
 ##Basics
 
 Changes in illumination make color classification not to be a straightforward process. In order to separate illumination from the color information the LAB space is used. Besides, the LAB space provides a linear-like distribution in the color space.
