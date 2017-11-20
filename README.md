@@ -1,6 +1,6 @@
 # color_classifier 
 
-##Basics
+## Basics
 
 Changes in illumination make color classification not to be a straightforward process. In order to separate illumination from the color information the LAB space is used. Besides, the LAB space provides a linear-like distribution in the color space.
 A Random Forest classifier is used in this package since it provides remarkable results in classification of more than 2 variables.
