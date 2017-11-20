@@ -1,8 +1,20 @@
 #!/usr/bin/env python
 
+import os
 import numpy as np
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.externals import joblib
+
+def create_directory():
+    '''Creates the directory for storing
+        the classifier and returns the
+        directory's path'''
+    path = os.path.dirname(os.path.abspath(__file__)) + \
+            '/classifiers'
+    if not os.path.exists(path):
+        os.makedirs(path)
+    return path
 
 def read_text_file():
     ''' Reads data from the .txt file and
@@ -64,6 +76,13 @@ def test_classifier(classifier, test_ds, train_ds, features_list):
     print 'Importance in the prediction of each variable, out of 1'
     print list(zip(train_ds[features_list], classifier.feature_importances_))
 
+def save_classifier(classifier):
+    ''' Saves the classifier using
+        joblib scipy utility'''
+    path_to_save = create_directory()
+    filename = path_to_save + '/random_forest_classifier.sav'
+    joblib.dump(classifier, filename)
+
 if __name__ == '__main__':
 
     # read data from .txt file
@@ -78,3 +97,5 @@ if __name__ == '__main__':
     clf = create_train_classifier(df, train, features)
     # test the classifier
     test_classifier(clf, test, train, features)
+    # save the classifier
+    save_classifier(clf)
