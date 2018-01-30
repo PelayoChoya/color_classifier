@@ -21,7 +21,7 @@ def read_text_file():
         outputs a list with the data plus
         the class                       '''
     # color plus its class identifier
-    colors = {'red':0, 'green':1, 'blue':2}
+    colors = {'red':0, 'green':1, 'blue':2, 'fucshia':3, 'orange':4,'yellow':5}
     data = {}
     for color in colors:
         data[color] = np.loadtxt('../dataset_construction/dataset/' +
@@ -35,7 +35,7 @@ def data_frame_from_array(array_data):
     ''' Creates a data frame pandas structure
         out of a data array'''
     data_array =[]
-    data_array = np.concatenate((array_data['red'], array_data['blue'],array_data['green'] ), axis = 0)
+    data_array = np.concatenate((array_data['red'], array_data['blue'],array_data['green'],array_data['fucshia'],array_data['orange'],array_data['yellow'] ), axis = 0)
     # creation of the data frame structure
     return pd.DataFrame(data_array, columns = ['L','A','B','COLOR'])
 
@@ -68,7 +68,7 @@ def test_classifier(classifier, test_ds, train_ds, features_list):
     # test data
     preds = classifier.predict(test_ds[features_list])
     print 'Confusion matrix for evaluating the results'
-    print 'red = 0, green = 1, blue = 2'
+    print 'red = 0, green = 1, blue = 2, fucshia = 3, orange = 4, yellow = 5'
     # display the confusion matrix
     print pd.crosstab(test_ds['COLOR'], preds, rownames=['COLOR'],
                       colnames=['Predicted Color'])
