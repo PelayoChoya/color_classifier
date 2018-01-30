@@ -54,7 +54,7 @@ def error_checking(user_input):
    if not user_input:
        raise ValueError('No arguments passed')
    else:
-        valid_options = ['red','green','blue']
+        valid_options = ['red','green','blue','fucshia','orange','yellow']
         for color in user_input:
            if color not in valid_options:
                raise ValueError(color + ' is not a valid argument')
@@ -66,7 +66,7 @@ if __name__ == '__main__':
     except ValueError:
         error_type, error_instance, traceback = sys.exc_info()
         error_instance.args = (error_instance.args[0] + ' <Valid:  \
-                               red,green,blue>',)
+                               red,green,blue,fucshia,orange,yellow>',)
         raise error_type, error_instance, traceback
     print 'Press ESC to exit'
     print 'Mouse Left Click to store image pixel position'
@@ -77,5 +77,5 @@ if __name__ == '__main__':
         px.setup_recording(color)
         while(px.recording_running):
             px.record_camera()
-            if cv2.waitKey(1) == 27:
+            if cv2.waitKey(1) > -1:
                 px.terminate_recording()
